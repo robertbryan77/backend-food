@@ -11,17 +11,17 @@ interface ICreatedClient{
 
 export class CreateClientUseCase{
     async execute({ username, password} : ICreatedClient) {
-        // const clientExist = await prisma.clients.findFirst({
-        //     where: {
-        //         username: {
-        //             mode: "insensitive",
-        //         }
-        //     }
-        // })
-        // if(clientExist) {
-        //     new Error("Client already exists");
+        const clientExist = await prisma.clients.findFirst({
+            where: {
+                username: {
+                    mode: "insensitive",
+                }
+            }
+        })
+        if(clientExist) {
+            throw new Error("Client already exists");
             
-        // }
+        }
 
         const hashPassword = await hash(password, 10);
 

@@ -3,9 +3,9 @@ import { CreateClientController } from "./modules/useCases/createClient/CreateCl
 
 const routes = Router();
 
-const createClientController = new CreateClientController;
+const createClientController = new CreateClientController();
 
-routes.get("/client/", createClientController.handle);
-routes.post("/client/",createClientController.handle);
+routes.post("/client/", createClientController.handle);
+
 
 export { routes };
